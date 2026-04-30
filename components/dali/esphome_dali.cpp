@@ -23,13 +23,14 @@ class DynamicDaliLightState : public esphome::light::LightState {
 public:
     using esphome::light::LightState::LightState;
 
+    void DynamicDaliLightState::configure_dynamic_entity(const char* name, const char* object_id, bool disabled_by_default) {
+            uint32_t entity_fields = (static_cast<uint32_t>(disabled_by_default) << 25);
+            this->configure_entity_(name, esphome::fnv1_hash_object_id(object_id, std::strlen(object_id)), entity_fields);
+    }
+
     
 };
 
-void DynamicDaliLightState::configure_dynamic_entity(const char* name, const char* object_id, bool disabled_by_default) {
-        uint32_t entity_fields = (static_cast<uint32_t>(disabled_by_default) << 25);
-        this->configure_entity_(name, esphome::fnv1_hash_object_id(object_id, std::strlen(object_id)), entity_fields);
-}
 
 }  // namespace
 
