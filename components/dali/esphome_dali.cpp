@@ -1,6 +1,8 @@
 #include <esphome.h>
 #include <esp_task_wdt.h>
+#include <entity_base.h>
 #include "esphome_dali.h"
+
 #include "esphome_dali_light.h"
 #include "port.h"
 
