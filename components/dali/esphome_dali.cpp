@@ -1,6 +1,6 @@
 #include <esphome.h>
 #include <esp_task_wdt.h>
-#include <entity_base.h>
+// #include <entity_base.h>
 #include "esphome_dali.h"
 
 #include "esphome_dali_light.h"
@@ -24,7 +24,7 @@ public:
     using esphome::light::LightState::LightState;
 
     void configure_dynamic_entity(const char* name, const char* object_id, bool disabled_by_default) {
-        uint32_t entity_fields = (static_cast<uint32_t>(disabled_by_default) << esphome::ENTITY_FIELD_DISABLED_BY_DEFAULT_SHIFT);
+        uint32_t entity_fields = (static_cast<uint32_t>(disabled_by_default) << 25);
         this->configure_entity_(name, esphome::fnv1_hash_object_id(object_id, std::strlen(object_id)), entity_fields);
     }
 };
